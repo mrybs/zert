@@ -1,0 +1,1 @@
+/usr/bin/g++ -g CMakeFiles/zert.dir/main.cpp.o CMakeFiles/zert.dir/lexer.cpp.o CMakeFiles/zert.dir/token.cpp.o -o zert 

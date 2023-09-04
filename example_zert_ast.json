@@ -1,0 +1,50 @@
+{
+  "execute": "Main.main",
+  "include": [
+    "std/console"
+  ],
+  "root": {
+    "name": "example.zert",
+    "flags": [],
+    "global_classes": [],
+    "global_functions": [],
+    "classes":[
+      {
+        "name": "Main",
+        "flags": [],
+        "classes": [],
+        "functions": [
+          {
+            "name": "main",
+            "flags": [],
+            "classes": [],
+            "functions": [],
+            "scopes": [
+              {
+                "what": "Console.print",
+                "args": [
+                  {
+                    "type": "STRING_LITERAL",
+                    "value": "Hello, world!"
+                  }
+                ],
+                "return": "None"
+              },
+              {
+                "what": "return",
+                "args": [
+                  {
+                    "type": "NUMERIC_LITERAL",
+                    "value": "0"
+                  }
+                ],
+                "return": "None"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    "functions": []
+  }
+}

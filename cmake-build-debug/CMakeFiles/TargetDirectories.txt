@@ -1,0 +1,3 @@
+/home/mrybs/Projects/zert/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/mrybs/Projects/zert/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/mrybs/Projects/zert/cmake-build-debug/CMakeFiles/zert.dir

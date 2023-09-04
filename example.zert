@@ -1,0 +1,10 @@
+@execute('Main.main');
+@include('std/console');
+
+class Main{
+    fun main(list args){
+        int a = 0;
+        a = 5;
+        return(a);
+    }
+}

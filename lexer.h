@@ -17,8 +17,10 @@ public:
     std::vector<Token> operator() (const std::string& code){
         std::vector<Token> tokens;
         std::vector<std::string> scd = code_split(code);
-        int i = 0;
-        while(i < scd.size()){
+        unsigned long i = 0;
+
+        while(i < scd.size()) {
+            std::cout << i << " << " << scd[i] << "\n";
             if(scd[i] == "@"){
                 if(scd[i+1] == "execute"){
                     if(scd[i+2] != "("){
@@ -45,7 +47,8 @@ public:
                     tokens.push_back({.type = TokenType::INCLUDE, .value = scd[i + 4]});
                     i += 6;
                 }
-            }else if(scd[i] == "class"){
+            }
+            else if(scd[i] == "class"){
                 int idx = i-1;
                 while(scd[idx] != "}" and scd[idx] != ";" and scd[idx] != "{"){
                     tokens.push_back({.type = TokenType::FLAG, .value = scd[idx]});
@@ -53,7 +56,8 @@ public:
                 }
                 tokens.push_back({.type = TokenType::CLASS_DEF, .value = scd[i+1]});
                 i++;
-            }else if(scd[i] == "{") tokens.push_back({.type = TokenType::OPEN_CURLY});
+            }
+            else if(scd[i] == "{") tokens.push_back({.type = TokenType::OPEN_CURLY});
             else if(scd[i] == "}") tokens.push_back({.type = TokenType::CLOSE_CURLY});
             else if(scd[i] == "(") tokens.push_back({.type = TokenType::OPEN_BRACKET});
             else if(scd[i] == ")") tokens.push_back({.type = TokenType::CLOSE_BRACKET});
@@ -75,7 +79,8 @@ public:
                     i++;
                 }
                 tokens.push_back({.type = TokenType::CLOSE_BRACKET});
-            }else{
+            }
+            else{
                 if(scd[i+1] == "("){
                     tokens.push_back({.type = TokenType::FUN, .value = scd[i]});
                     tokens.push_back({.type = TokenType::OPEN_BRACKET});
@@ -104,7 +109,8 @@ public:
                     }
                     i += args.size()-1;
                     tokens.push_back({.type = TokenType::CLOSE_BRACKET});
-                }else if(scd[i+2] == "="){
+                }
+                else if(scd[i+2] == "="){
                     tokens.push_back({.type = TokenType::VAR_DEF_TYPE, .value = scd[i]});
                     tokens.push_back({.type = TokenType::VAR_DEF_NAME, .value = scd[i+1]});
 
@@ -122,7 +128,8 @@ public:
                         }
                     }
                     i += var_init.size() + 1;
-                }else if(scd[i+1] == "="){
+                }
+                else if(scd[i+1] == "="){
                     tokens.push_back({.type = TokenType::VAR_SET_NAME, .value = scd[i]});
 
                     std::vector<std::string> var_init = until(slice(scd, i+2), "", ";");
@@ -143,8 +150,6 @@ public:
             }
             i++;
         }
-
-
         return tokens;
     }
 private:

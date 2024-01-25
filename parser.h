@@ -73,7 +73,8 @@ public:
                 if(tokens[i+1].type != TokenType::SEMI) throw ParserException("Excepted ';'");
                 objects_traceback[sdx]->scope.push_back(new_call);
                 i++;
-            }else if(tokens[i].type == TokenType::VAR_DEF_TYPE){
+            }
+            else if(tokens[i].type == TokenType::VAR_DEF_TYPE){
                 AST::Object::Call new_call{
                         .what = tokens[i].value,
                         .ret = tokens[i+1].value
@@ -81,6 +82,15 @@ public:
                 new_call.args.push_back({AST::Object::Call::Arg::tt2at(tokens[i+2].type), tokens[i+2].value});
                 objects_traceback[sdx]->scope.push_back(new_call);
                 i += 2;
+            }
+            else if(tokens[i].type == TokenType::VAR_SET_NAME) {
+                AST::Object::Call new_call{.what = "int", .ret = tokens[i].value};
+                new_call.args.push_back({
+                    .type = AST::Object::Call::Arg::tt2at(tokens[i+1].type),
+                    .value = tokens[i+1].value
+                });
+                objects_traceback[sdx]->scope.push_back(new_call);
+                i++;
             }
             i++;
         }
